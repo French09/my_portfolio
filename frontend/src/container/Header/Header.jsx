@@ -37,7 +37,7 @@ const Header = () => {
 
           <div className='tag-cmp app__flex'>
             <p className='p-text'>Développeur Fullstack</p>
-            <a href="../../assets/CV Dev - EPITECH.pdf" download>CV FR</a>
+            <a href="../../assets/cv-fr.pdf" download>CV FR</a>
           </div>
         </div>
       </motion.div>
