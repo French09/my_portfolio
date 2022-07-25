@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { AppWrap } from '../../wrapper'
 import { motion } from 'framer-motion'
@@ -37,7 +38,8 @@ const Header = () => {
 
           <div className='tag-cmp app__flex'>
             <p className='p-text'>Développeur Fullstack</p>
-            <a href="../../assets/cv-fr.pdf" download>CV FR</a>
+            {/* <a href="../../assets/cv-fr.pdf" download>CV FR</a> */}
+            {/* <Link to="/frontend/src/assets/cv-fr.pdf" target="_blank" download>Curriculum Vitae</Link> */}
           </div>
         </div>
       </motion.div>

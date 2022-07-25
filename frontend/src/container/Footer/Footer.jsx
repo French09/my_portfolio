@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser';
 
 import { images } from '../../constants'
 import { AppWrap, MotionWrap } from '../../wrapper'
@@ -7,7 +8,7 @@ import './Footer.scss'
 
 const Footer = () => {
 
-  const [formData, setFormData] = useState({name: '', email: '', message: ''});
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setisFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -17,26 +18,43 @@ const Footer = () => {
   const handleChangeInput = (e) => {
     const { name, value } = e.target
 
-    setFormData({ ...formData, [name]:value })
+    setFormData({ ...formData, [name]: value })
   }
 
-  const handleSubmit = () => {
-    setLoading(true);
+  // const handleSubmit = () => {
+  //   setLoading(true);
 
-    const contact = {
-      _type: 'contact',
-      name: 'formData.name',
-      email: email,
-      message: message
-    }
+  //   const contact = {
+  //     _type: 'contact',
+  //     name: 'formData.name',
+  //     email: email,
+  //     message: message
+  //   }
 
-    client.create(contact)
-    .then(() => {
-      setLoading(false);
-      setisFormSubmitted(true);
-    })
-  }
-  
+  //   client.create(contact)
+  //     .then(() => {
+  //       setLoading(false);
+  //       setisFormSubmitted(true);
+  //     })
+  // }
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_r4oj3ad', 'template_3fam2q5', form.current, 'qebYwCEj0leylm8H0')
+      .then((result) => {
+        setTimeout(() => {
+        console.log(result.text);
+        setLoading(true);
+          setLoading(false);
+        }, 2000)
+      }, (error) => {
+        console.log(error.text);
+      });
+  };
+
   return (
     <>
       <h2 id="contact" className='head-text'>Contactez-moi</h2>
@@ -57,50 +75,53 @@ const Footer = () => {
       </div>
 
       {!isFormSubmitted ? (
-      <div className='app__footer-form app__flex'>
-        <div className='app__flex'>
-          <input 
-            className='p-text' 
-            type="text" 
-            placeholder="Votre nom"
-            name='name'
-            value={name}
-            onChange={handleChangeInput}
-          />
+        <div className='app__footer-form app__flex'>
+          <form ref={form} onSubmit={sendEmail}>
+
+            <div className='app__flex'>
+              <input
+                className='p-text'
+                type="text"
+                placeholder="Votre nom"
+                name='name'
+                value={name}
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className='app__flex'>
+              <input
+                className='p-text'
+                type="email"
+                placeholder="Votre email"
+                name='email'
+                value={email}
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className='app__flex'>
+              <textarea
+                className='p-text'
+                placeholder='Votre message'
+                value={message}
+                name="message"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <button
+              type='submit'
+              className='p-text'
+              // onClick={handleSubmit}
+            >
+              {!loading ? 'Envoyer' : 'En cour d\'envoi...'}
+            </button>
+          </form>
         </div>
-        <div className='app__flex'>
-          <input 
-            className='p-text' 
-            type="email" 
-            placeholder="Votre email"
-            name='email'
-            value={email}
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div className='app__flex'>
-          <textarea 
-            className='p-text'
-            placeholder='Votre message'
-            value={message}
-            name={message}
-            onChange={handleChangeInput}
-          />
-        </div>
-        <button 
-          type='button' 
-          className='p-text' 
-          onClick={handleSubmit}
-        >
-          {!loading ? 'Send Message' : 'Sending...'}
-        </button> 
-      </div>
       ) : (
-      <div>
+        <div>
           <h3 className='head-text'>
             Merci pour votre prise de contact
           </h3>
-      </div>
+        </div>
       )}
     </>
   )
