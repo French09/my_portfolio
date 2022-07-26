@@ -45,10 +45,10 @@ const Footer = () => {
 
     emailjs.sendForm('service_t5cev1e', 'template_kg5lb2q', form.current, '32D4ig6qr_lKkKAnQ')
       .then((result) => {
-        setTimeout(() => {
-        console.log(result.text);
         setLoading(true);
-          setLoading(false);
+        setTimeout(() => {
+          console.log(result.text);
+          setisFormSubmitted(true);
         }, 2000)
       }, (error) => {
         console.log(error.text);
@@ -110,7 +110,7 @@ const Footer = () => {
             <button
               type='submit'
               className='p-text'
-              // onClick={handleSubmit}
+            // onClick={handleSubmit}
             >
               {!loading ? 'Envoyer' : 'En cour d\'envoi...'}
             </button>
