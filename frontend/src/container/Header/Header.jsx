@@ -32,13 +32,13 @@ const Header = () => {
             <span>👋</span>
             <div style={{ marginLeft: 20 }}>
               <p className='p-text'>Bonjour, je suis</p>
-              <h1 className='head-text'>François</h1>
+              <h1 className='head-text'>François Dinong</h1>
             </div>
           </div>
 
           <div className='tag-cmp app__flex'>
             <p className='p-text'>Développeur Fullstack</p>
-            {/* <a href="../../assets/cv-fr.pdf" download>CV FR</a> */}
+            <span className='cv-cmp'><a href="./cv.pdf" download="Curriculum vitae"></a></span>
             {/* <Link to="/frontend/src/assets/cv-fr.pdf" target="_blank" download>Curriculum Vitae</Link> */}
           </div>
         </div>
