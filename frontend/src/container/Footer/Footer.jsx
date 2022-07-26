@@ -43,7 +43,7 @@ const Footer = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_r4oj3ad', 'template_3fam2q5', form.current, 'qebYwCEj0leylm8H0')
+    emailjs.sendForm('service_t5cev1e', 'template_kg5lb2q', form.current, '32D4ig6qr_lKkKAnQ')
       .then((result) => {
         setTimeout(() => {
         console.log(result.text);
@@ -62,9 +62,9 @@ const Footer = () => {
       <div className='app__footer-cards'>
         <div className='app__footer-card'>
           <img src={images.email} alt="email" />
-          <a href="mailto: francois.dinong@outlook.com"
+          <a href="mailto: francoispaul.dinong@gmail.com"
             className='p-text'
-          >francois.dinong@outlook.com</a>
+          >francoispaul.dinong@gmail.com</a>
         </div>
         <div className='app__footer-card'>
           <img src={images.mobile} alt="mobile" />

@@ -91,8 +91,9 @@
                 background-color: var(--primary-color);
         
                 font-family: var(--font-base);
-                color: var(--secondary-color);
+                color: #000;
                 outline: none;
+                resize: none;
             }
         
             textarea {
