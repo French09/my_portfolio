@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsLinkedin } from 'react-icons/bs'
+import { BsLinkedin, BsGithub } from 'react-icons/bs'
 
 
 const SocialMedia = () => {
@@ -8,6 +8,9 @@ const SocialMedia = () => {
         <div>
           <a href='https://www.linkedin.com/in/francois-dinong/' target="_blank" rel="noreferrer">
             <BsLinkedin width="50px"/>
+          </a>
+          <a href='https://github.com/French09?tab=repositories' target="_blank" rel="noreferrer">
+            <BsGithub width="50px"/>
           </a>
         </div>
     </div>
