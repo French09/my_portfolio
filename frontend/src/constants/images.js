@@ -1,5 +1,4 @@
-import email from '../assets/email.png';
-import mobile from '../assets/mobile.png';
+// technos
 import api from '../assets/api.png';
 import cpp from '../assets/cpp.png';
 import css from '../assets/css.png';
@@ -9,7 +8,6 @@ import git from '../assets/git.png';
 import graphql from '../assets/graphql.png';
 import html from '../assets/html.png';
 import javascript from '../assets/javascript.png';
-import mu5 from '../assets/mu5.png';
 import node from '../assets/node.png';
 import python from '../assets/python.png';
 import react from '../assets/react.png';
@@ -20,7 +18,13 @@ import vue from '../assets/vue.png';
 import github from '../assets/github.png'
 import laravel from '../assets/laravel.png';
 import symfony from '../assets/symfony.png';
+import swift from '../assets/swift-programming-language-icon.png'
 import php from '../assets/php.png';
+
+// distros
+import macos from '../assets/apple-icon.png'
+import windows from '../assets/windows-icon.png'
+import ubuntu from '../assets/ubuntu-color-icon.png'
 
 import about01 from '../assets/about01.png';
 import about02 from '../assets/about02.png';
@@ -29,7 +33,6 @@ import about04 from '../assets/about04.png';
 
 import profile from '../assets/profile.png';
 import circle from '../assets/circle.svg';
-// import logo from '../assets/logo.png';
 
 import adidas from '../assets/adidas.png';
 import amazon from '../assets/amazon.png';
@@ -38,6 +41,10 @@ import bolt from '../assets/bolt.png';
 import nb from '../assets/nb.png';
 import skype from '../assets/skype.png';
 import spotify from '../assets/spotify.png';
+
+// contact
+import email from '../assets/email.png';
+import mobile from '../assets/mobile.png';
 
 // eslint-disable-next-line
 export default {
@@ -52,7 +59,6 @@ export default {
   graphql,
   html,
   javascript,
-  mu5,
   node,
   python,
   react,
@@ -70,7 +76,6 @@ export default {
   laravel,
   symfony,
   php,
-  // logo,
   adidas,
   amazon,
   asus,
@@ -78,4 +83,7 @@ export default {
   nb,
   skype,
   spotify,
+  macos,
+  windows,
+  ubuntu,
 };

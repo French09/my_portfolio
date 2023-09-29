@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { AppWrap } from '../../wrapper'
 import { motion } from 'framer-motion'
 import { images } from '../../constants'
+import curriculumVitae from './cv_fr-dinong-MSC.pdf'
 import './Header.scss'
 
 const scaleVariant = {
@@ -17,9 +17,8 @@ const scaleVariant = {
   }
 }
 
-const Header = () => {
+const Header = () => {  
   return (
-
     // Pop up message
     <div id="accueil" className='app__header app__flex'>
       <motion.div
@@ -38,8 +37,15 @@ const Header = () => {
 
           <div className='tag-cmp app__flex'>
             <p className='p-text'>Développeur Fullstack</p>
-            <span className='cv-cmp'><a href="./cv.pdf" download="Curriculum vitae"></a></span>
-            {/* <Link to="/frontend/src/assets/cv-fr.pdf" target="_blank" download>Curriculum Vitae</Link> */}
+            <span className='cv-cmp'>
+            <a
+              href={curriculumVitae}
+              download="cv_fr-dinong.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+            </a>
+            </span>
           </div>
         </div>
       </motion.div>
@@ -53,7 +59,9 @@ const Header = () => {
         <img src={images.profile} alt="Profile de fond" />
         <motion.img
           whileInView={{ scale: [0, 1] }}
-          transition={{ duration: 1, ease: 'eeaseInOut' }}
+          transition={{ duration: 1, 
+            ease: 'easeInOut' 
+          }}
           className='app__header-img overlay_circle'
           src={images.circle}
           alt='profile-circle'
@@ -66,7 +74,7 @@ const Header = () => {
         whileInView={scaleVariant.whileInView}
         className='app__header-circles'
       >
-        {[images.php, images.react, images.sass].map((circle, index) => (
+        {[images.python, images.node, images.react, images.macos].map((circle, index) => (
           <div className='circle-cmp app__flex' key={`circle-${index}`}>
             <img src={circle} alt="circle" />
           </div>
