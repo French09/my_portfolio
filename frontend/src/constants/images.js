@@ -86,4 +86,5 @@ export default {
   macos,
   windows,
   ubuntu,
+  swift,
 };
