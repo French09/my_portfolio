@@ -6,82 +6,65 @@ import { images } from '../../constants'
 import curriculumVitae from './cv_fr-dinong-MSC.pdf'
 import './Header.scss'
 
-const scaleVariant = {
-  whileInView: {
-    scale: [0, 1],
-    opacity: [0, 1],
-    transition: {
-      duration: 1,
-      ease: 'easeInOut'
-    }
-  }
-}
-
-const Header = () => {  
+const Header = () => {
   return (
-    // Pop up message
-    <div id="accueil" className='app__header app__flex'>
+    <div className='app__header'>
       <motion.div
-        whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-        transition={{ duration: 0.5 }}
-        className='app__header-info'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className='app__header-content'
       >
-        <div className='app__header-badge'>
-          <div className='badge-cmp app__flex'>
-            <span>👋</span>
-            <div style={{ marginLeft: 20 }}>
-              <p className='p-text'>Bonjour, je suis</p>
-              <h1 className='head-text'>François Dinong</h1>
-            </div>
-          </div>
+        <p className='app__header-greeting'>Bonjour, je suis</p>
+        <h1 className='app__header-name'>François Dinong</h1>
+        <h2 className='app__header-title'>Développeur Fullstack</h2>
+        <p className='app__header-description'>
+          Apprenti développeur passionné, à la recherche d'une alternance pour
+          construire des expériences web modernes et performantes.
+        </p>
 
-          <div className='tag-cmp app__flex'>
-            <p className='p-text'>Développeur Fullstack</p>
-            <span className='cv-cmp'>
-            <a
-              href={curriculumVitae}
-              download="cv_fr-dinong.pdf"
-              target="_blank"
-              rel="noreferrer"
+        <div className='app__header-cta'>
+          <a
+            href={curriculumVitae}
+            download="cv_fr-dinong.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn--primary"
+          >
+            Voir mon CV
+          </a>
+          <a href="#contact" className="btn btn--outline">
+            Me contacter
+          </a>
+        </div>
+
+        <div className='app__header-tech'>
+          {[images.react, images.node, images.python, images.typescript].map((img, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+              className='app__header-tech-icon'
             >
-            </a>
-            </span>
-          </div>
+              <img src={img} alt="tech" />
+            </motion.div>
+          ))}
         </div>
       </motion.div>
 
-      {/* Profile pic */}
       <motion.div
-        whileInView={{ opacity: [0, 1] }}
-        transition={{ duration: 0.5, delayChildren: 0.5 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
         className='app__header-img'
       >
-        <img src={images.profile} alt="Profile de fond" />
-        <motion.img
-          whileInView={{ scale: [0, 1] }}
-          transition={{ duration: 1, 
-            ease: 'easeInOut' 
-          }}
-          className='app__header-img overlay_circle'
-          src={images.circle}
-          alt='profile-circle'
-        />
-      </motion.div>
-
-      {/* Bubbles technos */}
-      <motion.div
-        variants={scaleVariant}
-        whileInView={scaleVariant.whileInView}
-        className='app__header-circles'
-      >
-        {[images.python, images.node, images.react, images.macos].map((circle, index) => (
-          <div className='circle-cmp app__flex' key={`circle-${index}`}>
-            <img src={circle} alt="circle" />
-          </div>
-        ))}
+        <div className="app__header-img-wrapper">
+          <img src={images.profile} alt="François Dinong" />
+        </div>
       </motion.div>
     </div>
   )
 }
 
-export default AppWrap(Header, 'home')
+export default AppWrap(Header, 'accueil')

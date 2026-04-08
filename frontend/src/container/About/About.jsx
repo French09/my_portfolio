@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { urlFor, client } from "../../client";
-import { AppWrap } from "../../wrapper";
+import { AppWrap, MotionWrap } from "../../wrapper";
 import { motion } from "framer-motion";
 import "./About.scss";
 
@@ -18,26 +18,26 @@ const About = () => {
 
   return (
     <>
-      <h2 id="moi" className="head-text">
-        Apprenti développeur à la recherche d'une <span>alternance</span>
+      <h2 className="head-text">
+        À propos de <span>moi</span>
       </h2>
+      <p className="app__about-subtitle">
+        Apprenti développeur passionné par le web, le mobile et les nouvelles technologies.
+      </p>
 
       <div className="app__profiles">
         {abouts.map((about, index) => (
           <motion.div
-            whileInView={{ opcaity: 1 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5, type: "tween" }}
+            whileInView={{ opacity: [0, 1], y: [20, 0] }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
             className="app__profile-item"
             key={about.title + index}
           >
-            <img src={urlFor(about.imgUrl)} alt={about.title} />
-            <h2 className="bold-text" style={{ marginTop: 20 }}>
-              {about.title}
-            </h2>
-            <p className="p-text" style={{ marginTop: 10 }}>
-              {about.description}
-            </p>
+            <div className="app__profile-img">
+              <img src={urlFor(about.imgUrl)} alt={about.title} />
+            </div>
+            <h3 className="bold-text">{about.title}</h3>
+            <p className="p-text">{about.description}</p>
           </motion.div>
         ))}
       </div>
@@ -45,4 +45,8 @@ const About = () => {
   );
 };
 
-export default AppWrap(About, "about");
+export default AppWrap(
+  MotionWrap(About, 'app__about'),
+  'moi',
+  'app__primarybg'
+);

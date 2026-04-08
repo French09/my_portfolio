@@ -1,105 +1,110 @@
-import React, { useState, useRef } from 'react'
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react'
+import { BsEnvelope, BsPhone } from 'react-icons/bs';
 
-import { images } from '../../constants'
 import { AppWrap, MotionWrap } from '../../wrapper'
 import './Footer.scss'
 
+const FORMSPREE_URL = `https://formspree.io/f/${process.env.REACT_APP_FORMSPREE_ID}`;
+
 const Footer = () => {
-	const form = useRef();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isFormSubmitted, setisFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-	const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-	const [isFormSubmitted, setisFormSubmitted] = useState(false);
-	const [loading, setLoading] = useState(false);
+  const { name, email, message } = formData;
 
-	// Déstructure la variable formData dans les variable "name", "email, "message"
-	const { name, email, message } = formData
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-	const handleChangeInput = (e) => {
-		const { name, value } = e.target
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
-		setFormData({ ...formData, [name]: value })
-	}
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-	const sendEmail = (e) => {
-		e.preventDefault();
+      if (response.ok) {
+        setisFormSubmitted(true);
+      } else {
+        const data = await response.json();
+        setError(data?.errors?.[0]?.message || "Une erreur est survenue. Veuillez réessayer.");
+      }
+    } catch (err) {
+      setError("Impossible d'envoyer le message. Vérifiez votre connexion internet.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-		emailjs.sendForm('service_1wndcpm', 'template_1vi6b9h', form.current, 'qebYwCEj0leylm8H0')
-			.then((result) => {
-				setLoading(true);
-				setTimeout(() => {
-					console.log(result.text);
-					setisFormSubmitted(true);
-				}, 2000)
-			}, (error) => {
-				console.log(error.text);
-			});
-	};
+  return (
+    <>
+      <h2 className='head-text'>
+        Me <span>contacter</span>
+      </h2>
 
-	return (
-		<>
-			<h2 id="contact" className='head-text'>Contactez-moi</h2>
+      <div className='app__footer-cards'>
+        <a href="mailto:francois.dinong@outlook.com" className='app__footer-card'>
+          <BsEnvelope />
+          <span>francois.dinong@outlook.com</span>
+        </a>
+        <a href="tel:+33634456858" className='app__footer-card'>
+          <BsPhone />
+          <span>+33 6 34 45 68 58</span>
+        </a>
+      </div>
 
-			<div className='app__footer-cards'>
-				<div className='app__footer-card'>
-					<img src={images.email} alt="email" />
-					<a href="mailto: francoispaul.dinong@gmail.com"
-						className='p-text'
-					>francoispaul.dinong@gmail.com</a>
-				</div>
-				<div className='app__footer-card'>
-					<img src={images.mobile} alt="mobile" />
-					<a href="tel: +33 6 34 45 68 58"
-						className='p-text'
-					>+33 6 34 45 68 58</a>
-				</div>
-			</div>
-
-			{!isFormSubmitted ? (
-				<div className='app__footer-form app__flex'>
-					<form ref={form} onSubmit={sendEmail}>
-
-						<div className='app__flex'>
-							<input
-								className='p-text'
-								type="text"
-								placeholder="Votre nom"
-								name='name'
-								value={name}
-								onChange={handleChangeInput}
-							/>
-						</div>
-						<div className='app__flex'>
-							<input
-								className='p-text'
-								type="email"
-								placeholder="Votre email"
-								name='email'
-								value={email}
-								onChange={handleChangeInput}
-							/>
-						</div>
-						<div className='app__flex'>
-							<textarea
-								className='p-text'
-								placeholder='Votre message'
-								value={message}
-								name="message"
-								onChange={handleChangeInput}
-							/>
-						</div>
-						<input type="submit" value="Send" />
-					</form>
-				</div>
-			) : (
-				<div>
-					<h3 className='head-text'>
-						Merci pour votre prise de contact
-					</h3>
-				</div>
-			)}
-		</>
-	)
+      {!isFormSubmitted ? (
+        <form onSubmit={sendEmail} className='app__footer-form'>
+          <input
+            type="text"
+            placeholder="Votre nom"
+            name='name'
+            value={name}
+            onChange={handleChangeInput}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Votre email"
+            name='email'
+            value={email}
+            onChange={handleChangeInput}
+            required
+          />
+          <textarea
+            placeholder='Votre message'
+            value={message}
+            name="message"
+            onChange={handleChangeInput}
+            required
+          />
+          {error && <p className="app__footer-error">{error}</p>}
+          <button type="submit" disabled={loading}>
+            {loading ? 'Envoi en cours...' : 'Envoyer'}
+          </button>
+        </form>
+      ) : (
+        <div className="app__footer-success">
+          <p>Merci pour votre message ! Je vous recontacterai bientôt.</p>
+        </div>
+      )}
+    </>
+  )
 }
 
-export default AppWrap(MotionWrap(Footer, 'app__footer'), 'contact', 'app__whitebg')
+export default AppWrap(MotionWrap(Footer, 'app__footer'), 'contact')

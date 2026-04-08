@@ -1,22 +1,27 @@
 .app {
-  background-color: var(--primary-color);
+  background-color: var(--bg-primary);
   font-family: var(--font-base);
-}
-
-.app__whitebg {
-  background-color: var(--white-color);
+  transition: background-color 0.3s ease;
 }
 
 .app__primarybg {
-  background-color: var(--primary-color);
+  background-color: var(--bg-secondary);
+}
+
+.app__whitebg {
+  background-color: var(--bg-primary);
 }
 
 .app__container {
   width: 100%;
-  min-height: 100vh;
-
   display: flex;
   flex-direction: row;
+  padding-top: var(--navbar-height, 56px);
+  scroll-margin-top: 0;
+
+  &:first-child {
+    min-height: 100vh;
+  }
 }
 
 .app__flex {
@@ -29,17 +34,20 @@
   flex: 1;
   width: 100%;
   flex-direction: column;
-  padding: 4rem 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: flex-start;
 
   @media screen and (max-width: 450px) {
-    padding: 4rem 1rem 2rem;
+    padding: 0 1.25rem 2rem;
   }
 }
 
 .copyright {
   width: 100%;
   padding: 2rem 0 0;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -47,19 +55,23 @@
 
   p {
     text-transform: uppercase;
-    color: var(--black-color);
+    color: var(--text-tertiary);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
   }
 }
 
 .head-text {
-  font-size: 2.75rem;
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
-  color: var(--black-color);
-  text-transform: capitalize;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
 
   span {
-    color: var(--secondary-color);
+    color: var(--accent);
   }
 
   @media screen and (min-width: 2000px) {
@@ -67,15 +79,15 @@
   }
 
   @media screen and (max-width: 450px) {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
 
 .p-text {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-align: left;
-  color: var(--gray-color);
-  line-height: 1.5;
+  color: var(--text-secondary);
+  line-height: 1.7;
 
   @media screen and (min-width: 2000px) {
     font-size: 1.75rem;
@@ -84,8 +96,8 @@
 
 .bold-text {
   font-size: 1rem;
-  font-weight: 800;
-  color: var(--black-color);
+  font-weight: 600;
+  color: var(--text-primary);
   text-align: left;
 
   @media screen and (min-width: 2000px) {
@@ -97,47 +109,53 @@
   }
 }
 
+/* Social sidebar */
 .app__social {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-
   padding: 1rem;
 
   div {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    background-color: var(--white-color);
+    background-color: var(--bg-card);
     margin: 0.25rem 0;
-    border: 1px solid var(--lightGray-color);
-
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.2s ease;
 
-    transition: all 0.3s ease-in-out;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
 
     svg {
       width: 15px;
       height: 15px;
-      color: var(--gray-color);
+      color: var(--text-tertiary);
+      transition: color 0.2s ease;
     }
 
     &:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
+      background-color: var(--accent);
+      border-color: var(--accent);
 
       svg {
-        color: var(--white-color);
+        color: #fff;
       }
     }
 
     @media screen and (min-width: 2000px) {
       width: 70px;
       height: 70px;
-
       margin: 0.5rem 0;
 
       svg {
@@ -148,25 +166,26 @@
   }
 }
 
+/* Navigation dots */
 .app__navigation {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   padding: 1rem;
 
   .app__navigation-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: #cbcbcb;
+    background-color: var(--text-tertiary);
+    opacity: 0.3;
     margin: 0.5rem;
-
-    transition: background-color 0.2s ease-in-out;
+    transition: all 0.2s ease;
 
     &:hover {
-      background-color: var(--secondary-color);
+      opacity: 0.7;
+      background-color: var(--accent);
     }
 
     @media screen and (min-width: 2000px) {
@@ -188,5 +207,5 @@
 }
 
 body, html {
-  scroll-padding-top: 67px; 
+  scroll-padding-top: 0;
 }

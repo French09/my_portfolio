@@ -1,158 +1,145 @@
 .app__works {
-    flex: 1;
-    width: 100%;
-    flex-direction: column;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
 }
 
 .app__work-filter {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2.5rem 0 2rem;
 
-    margin: 4rem 0 2rem;
+  .app__work-filter-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-family: var(--font-base);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
 
-    .app__work-filter-item {
-        padding: .5rem 1rem;
-        border-radius: 0.5rem;
-        background-color: #fff;
-        color: #000;
-        font-weight: 800;
-        cursor: pointer;
-        transition: all .3s ease;
-        margin: .5rem;
-
-        &:hover {
-            background-color: var(--secondary-color);
-            color: #fff;
-        }
-        
-        @media screen and (min-width: 2000px){
-            padding: 1rem 2rem;
-            border-radius: .85rem;
-        }
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
-    .item-active {
-        background-color: var(--secondary-color);
-        color: #fff;    
+    &.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
     }
+  }
 }
 
 .app__work-portfolio {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+}
 
-    .app__work-item {
-        width: 270px;
-        flex-direction: column;
+.app__work-item {
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.2s ease;
 
-        margin: 2rem;
-        padding: 1rem;
-        border-radius: .5rem;
-        background-color: #fff;
-        color: #000;
+  &:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
 
-        cursor: pointer;
+  &:hover .app__work-hover {
+    opacity: 1;
+  }
 
-        transition: all .3s ease;
+  &:hover .app__work-img img {
+    transform: scale(1.03);
+  }
+}
 
-        &:hover {
-            box-shadow: 0 0 .25px rgba(0, 0, 0, .2);
-        }
-        
-        @media screen and (min-width: 2000px){
-            width: 470px;
-            padding: 1.25rem;
-            border-radius: .75rem;
-        }
+.app__work-img {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
 
-        @media screen and (max-width: 300px){
-            width: 100%;
-            margin: 1rem;
-        }
-
-    }
-
-    .app__work-img {
-        width: 100%;
-        height: 230px;
-        position: relative;
-
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: .5rem;
-            object-fit: cover;
-        }
-
-        @media screen and (min-width: 2000px){
-            height: 350px;
-            
-        }
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
 }
 
 .app__work-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 
-    background-color: rgba($color: #000000, $alpha: 0.5);
+  .app__work-hover-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
 
-    border-radius: 1 rem;
-    opacity: 0;
-    transition: all .3s ease;
-    
-    div {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: rgba($color: #000000, $alpha: .5);
-        color: #fff;
-
-        margin: .5rem;
-        font-family: var(--font-base);
-        font-weight: 800;
-        cursor: pointer;
-        transition: all .3s ease;
-
-        svg {
-            width: 50%;
-            height: 50%;
-            color: var(--white-color);
-        }
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #fff;
     }
+
+    &:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+  }
 }
 
 .app__work-content {
-    padding: 0.5rem;
-    width: 100%;
-    position: relative;
-    flex-direction: column;
-  
-    h4 {
-      margin-top: 1rem;
-      line-height: 1.5;
-  
-      @media screen and (min-width: 2000px) {
-        margin-top: 3rem;
-      }
-    }
-  
-    .app__work-tag {
-      position: absolute;
-  
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      background-color: #fff;
-      top: -25px;
+  padding: 1.25rem;
+
+  .app__work-tag {
+    margin-bottom: 0.5rem;
+
+    span {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
   }
+
+  h4 {
+    margin-bottom: 0.4rem;
+  }
+
+  .p-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}
