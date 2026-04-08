@@ -18,6 +18,7 @@ const Skills = () => {
 
   return (
     <>
+      <span className="section-eyebrow">03 — Compétences</span>
       <h2 className="head-text">
         Compétences & <span>Technologies</span>
       </h2>

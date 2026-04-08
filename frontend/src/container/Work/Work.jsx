@@ -38,6 +38,7 @@ const Work = () => {
 
   return (
     <>
+      <span className="section-eyebrow">02 — Projets</span>
       <h2 className="head-text">
         Mes <span>Projets</span>
       </h2>

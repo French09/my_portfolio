@@ -53,6 +53,7 @@ const Footer = () => {
 
   return (
     <>
+      <span className="section-eyebrow">04 — Contact</span>
       <h2 className='head-text'>
         Me <span>contacter</span>
       </h2>

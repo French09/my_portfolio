@@ -18,6 +18,7 @@ const About = () => {
 
   return (
     <>
+      <span className="section-eyebrow">01 — À propos</span>
       <h2 className="head-text">
         À propos de <span>moi</span>
       </h2>

@@ -1,68 +1,64 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@300;400;500&display=swap");
 
 :root {
-  --font-base: "Inter", sans-serif;
-  --font-heading: "Space Grotesk", sans-serif;
-
-  /* Modernized violet/cyan palette */
-  --primary-violet: #7c5cfc;
-  --primary-violet-light: #a78bfa;
-  --primary-cyan: #22d3ee;
-  --primary-cyan-light: #67e8f9;
+  --font-display: "Cormorant Garamond", serif;
+  --font-base: "DM Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-heading: "Cormorant Garamond", serif;
 }
 
 /* ===== DARK THEME (default) ===== */
 [data-theme="dark"] {
-  --bg-primary: #0b0b10;
-  --bg-secondary: #111118;
-  --bg-tertiary: #18181f;
-  --bg-card: rgba(255, 255, 255, 0.03);
-  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --bg-primary: #0C0C0C;
+  --bg-secondary: #111111;
+  --bg-tertiary: #171717;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --bg-card-hover: rgba(255, 255, 255, 0.045);
 
-  --text-primary: #f0f0f5;
-  --text-secondary: #9ca3af;
-  --text-tertiary: #6b7280;
+  --text-primary: #F0EBE1;
+  --text-secondary: #8A8375;
+  --text-tertiary: #4D4840;
 
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  --border-color: rgba(240, 235, 225, 0.08);
+  --border-hover: rgba(240, 235, 225, 0.16);
 
-  --accent: var(--primary-violet);
-  --accent-light: var(--primary-violet-light);
-  --accent-secondary: var(--primary-cyan);
+  --accent: #D4A853;
+  --accent-light: #E8C47A;
+  --accent-secondary: #C49540;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.65);
 
-  --navbar-bg: rgba(11, 11, 16, 0.85);
+  --navbar-bg: rgba(12, 12, 12, 0.92);
 
   color-scheme: dark;
 }
 
 /* ===== LIGHT THEME ===== */
 [data-theme="light"] {
-  --bg-primary: #fafafa;
-  --bg-secondary: #f3f4f6;
-  --bg-tertiary: #e5e7eb;
-  --bg-card: rgba(0, 0, 0, 0.02);
-  --bg-card-hover: rgba(0, 0, 0, 0.04);
+  --bg-primary: #F5F0E8;
+  --bg-secondary: #EDE7DC;
+  --bg-tertiary: #E2DCD3;
+  --bg-card: rgba(0, 0, 0, 0.025);
+  --bg-card-hover: rgba(0, 0, 0, 0.045);
 
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-tertiary: #9ca3af;
+  --text-primary: #0C0C0C;
+  --text-secondary: #5A5248;
+  --text-tertiary: #9A9288;
 
-  --border-color: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.15);
+  --border-color: rgba(12, 12, 12, 0.09);
+  --border-hover: rgba(12, 12, 12, 0.18);
 
-  --accent: #6d4fe8;
-  --accent-light: #8b73f0;
-  --accent-secondary: #0891b2;
+  --accent: #9A6E08;
+  --accent-light: #C49030;
+  --accent-secondary: #806008;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.09);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.14);
 
-  --navbar-bg: rgba(250, 250, 250, 0.85);
+  --navbar-bg: rgba(245, 240, 232, 0.92);
 
   color-scheme: light;
 }
@@ -83,7 +79,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Grain texture — film grain subtil sur l'ensemble */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
 ::selection {
   background-color: var(--accent);
-  color: #fff;
+  color: #0C0C0C;
 }
